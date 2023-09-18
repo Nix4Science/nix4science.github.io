@@ -18,3 +18,17 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/sphinx -v ${{ github.workspace }}/_site:/srv/sphinx/_site \
         guilloteauq/nix4science:latest /bin/bash -c "sphinx-build /srv/sphinx/source /srv/sphinx/_site"
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action

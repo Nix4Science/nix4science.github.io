@@ -16,5 +16,5 @@ jobs:
     - name: Build the site in the sphinx/builder container
       run: |
         docker run \
-        -v ${{ github.workspace }}:/srv/sphix -v ${{ github.workspace }}/_site:/srv/sphinx/_site \
+        -v ${{ github.workspace }}:/srv/sphinx -v ${{ github.workspace }}/_site:/srv/sphinx/_site \
         guilloteauq/nix4science:latest /bin/bash -c "sphinx-build /srv/sphinx/source /srv/sphinx/_site"

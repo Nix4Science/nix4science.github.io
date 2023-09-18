@@ -7,28 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the site in the sphinx/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/sphinx -v ${{ github.workspace }}/_site:/srv/sphinx/_site \
-        guilloteauq/nix4science:latest /bin/bash -c "sphinx-build /srv/sphinx/source /srv/sphinx/_site"
-
-  deploy:
-    needs: build
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-deploy:
+    # concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2 # or the latest "vX.X.X" version tag for this action
+      - uses: actions/checkout@v3
+      - name: Build the site in the sphinx/builder container
+        run: |
+          docker run \
+          -v ${{ github.workspace }}:/srv/sphinx -v ${{ github.workspace }}/_site:/srv/sphinx/_site \
+          guilloteauq/nix4science:latest /bin/bash -c "sphinx-build /srv/sphinx/source /srv/sphinx/_site"
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ github.workspace }}/_site

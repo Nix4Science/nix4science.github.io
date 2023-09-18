@@ -12,15 +12,14 @@
         docker-ci = pkgs.dockerTools.buildImage {
           name = "GuilloteauQ/nix4science";
           tag = "latest";
-
           copyToRoot = pkgs.buildEnv {
             name = "image-root";
             paths = with pkgs; [
               gnumake
-              python3Packages.sphinx
-              python3Packages.sphinx-book-theme
+              (python3.withPackages (ps: with ps; [ sphinx sphinx-book-theme ]))
+              bashInteractive
             ];
-            pathsToLink = [ "/bin" ];
+            pathsToLink = [ "/bin" "/lib" ];
           };
         };
       };

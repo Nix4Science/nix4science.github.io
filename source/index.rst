@@ -14,6 +14,10 @@ Welcome to Nix4Science
 .. attention::
    Under construction
 
+This website aims at referencing ways to improve the reproducibility of your research with `Nix and NixOS <https://nixos.org>`_.
+
+It however does not aim at teaching you the basic usage of Nix.
+
 Indices and tables
 ==================
 

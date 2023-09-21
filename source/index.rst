@@ -10,6 +10,8 @@ Welcome to Nix4Science
    :maxdepth: 2
    :caption: Contents:
 
+    Containerized Nix shells <nix-shell-container.rst>
+
 
 .. attention::
    Under construction

@@ -7,7 +7,7 @@ Welcome to Nix4Science
 ======================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
     Containerized Nix shells <nix-shell-container.rst>

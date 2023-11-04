@@ -160,6 +160,12 @@ Step 3: Run Snakemake
 ---------------------
 
 It is now time to run Snakemake.
+Snakemake is available in the default Nix shell:
+
+.. code-block:: shell-session
+
+   nix develop
+
 We need to give to Snakemake the number of cores that it can use in parallel (``-c`` option).
 
 .. code-block:: shell-session

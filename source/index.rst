@@ -11,7 +11,12 @@ Welcome to Nix4Science
    :caption: Contents:
 
     Containerized Nix shells <nix-shell-container.rst>
-    Snakemake tutorial <snakemake-tutorial.rst>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tutorials:
+
+    Snakemake + Nix <snakemake-tutorial.rst>
 
 
 .. attention::

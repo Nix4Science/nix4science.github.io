@@ -31,7 +31,7 @@ But this is cumbersome.
 
 A better way would be to isolate the shell without any extra dependency.
 
-The `Nix4Science flake <https://github.com/nix4science/utils>`_ provides a way to do so by using the Linux `user namespace` feature.
+The `Nix4Science flake <https://github.com/nix4science/n4s>`_ provides a way to do so by using the Linux `user namespace` feature.
 
 First, let's import the flake as ``n4s``.
 This flake provides a replacement for the ``mkShell`` fonction: ``n4s.lib.${system}.mkShell``.
@@ -42,7 +42,7 @@ By default it behaves like ``mkShell``, but we can activate the containerization
 
     {
       inputs.nixpkgs.url = "github:nixos/nixpkgs/23.05";
-      inputs.n4s.url = "github:nix4science/utils";
+      inputs.n4s.url = "github:nix4science/n4s";
       outputs = { self, nixpkgs, n4s }:
         let
           system = "x86_64-linux";
@@ -67,7 +67,7 @@ Our workaround is the following:
 
     {
       inputs.nixpkgs.url = "github:nixos/nixpkgs/23.05";
-      inputs.n4s.url = "github:nix4science/utils";
+      inputs.n4s.url = "github:nix4science/n4s";
       outputs = { self, nixpkgs, n4s }:
         let
           system = "x86_64-linux";

@@ -19,7 +19,7 @@ The starting point of the tutorial is available through a Nix template.
 
 .. code-block:: bash
 
-   nix flake new -t github:nix4science/utils#tuto tuto
+   nix flake new -t github:nix4science/n4s#tuto tuto
 
 The template should now be in the ``tuto`` folder.
 
@@ -270,7 +270,7 @@ To use it we'll need to ask the ``flake.nix`` to use the modified one instead of
 
 .. admonition:: Your turn
 
-   Add a new ``input`` called ``n4s`` to the ``flake.nix`` at the address ``github:nix4science/utils``.
+   Add a new ``input`` called ``n4s`` to the ``flake.nix`` at the address ``github:nix4science/n4s``.
 
 (don't forget to pass it in the parameters of the ``output`` function).
 

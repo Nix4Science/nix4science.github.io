@@ -10,6 +10,7 @@ Welcome to Nix4Science
    :maxdepth: 1
    :caption: Contents:
 
+    A posteriori Nix shells <mop.rst>
     Containerized Nix shells <nix-shell-container.rst>
 
 .. toctree::

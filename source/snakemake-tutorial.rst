@@ -174,7 +174,7 @@ We need to give to Snakemake the number of cores that it can use in parallel (``
 
 After it completed, you should have a folder ``data`` with all the produced csv, the pdf of the paper in the ``paper`` folder, with the generated figures under ``paper/figs``.
 
-You can try to change some parameters in the Snakefile, or text in the paper, and rerun ``snakemake``, it will detect the changes and rerun only the necessaty rules.
+You can try to change some parameters in the ``Snakefile``, or in the text of the paper, and rerun ``snakemake``, it will detect the changes and rerun only the necessaty rules.
 
 
 Step 4: Add a new dimension
@@ -196,7 +196,7 @@ This means that the gravitational force should be changed in the simulator depen
 **Pop quizz**: Do you think Snakemake will regenerate all the previously generated files even though we only modified the CLI?
 
 
-Now that the expriment script can take into account different planet, let's tell Snakemake how to use it.
+Now that the experiment script can take into account different planet, let's tell Snakemake how to use it.
 
 .. admonition:: Your turn
 
@@ -206,8 +206,8 @@ Now that the expriment script can take into account different planet, let's tell
 Step 5: Add a new figure
 ------------------------
 
-With this new data, we can generate more intersting plots!
-The script ``analysis/multi_planets.R`` generate a plot of the different of trajectories for the same initial conditions on different planets.
+With this new data, we can generate more interesting plots!
+The script ``analysis/multi_planets.R`` generates a plot of the different of trajectories for the same initial conditions on different planets.
 
 .. admonition:: Your turn
 
@@ -229,15 +229,18 @@ Step 6: Add a new rule
 For now you modified existing rules, it is time to create a rule of your own!
 
 You might have notice, but all the ``R`` scripts actually read all the csv everytime, which takes time.
-What would be better would be to generate a single csv will all the data and then give this single csv to the analysis scripts.
+What would be better is to generate a single csv with all the data and then give this single csv to the different analysis scripts.
 
-The script ``analysis/merge_csv.R`` takes all the csv files and the name of the resulting new csv file which contain the merged data.
+The script ``analysis/merge_csv.R`` takes all the csv files and the name of the resulting new csv file which contains the merged data.
 
 .. admonition:: Your turn
 
    Create a new rule in the ``Snakefile`` to generate this new merged csv.
 
-(You can put the name of the new csv in the ``input`` field of the ``all`` rule to debug.)
+
+.. tip::
+
+    You can put the name of the new csv in the ``input`` field of the ``all`` rule to debug.
 
 Now that we have a single csv file to give to the plotting scripts, we can update the ``Snakefile`` to use it.
 
@@ -253,7 +256,7 @@ There is a reproducibility problem in our ``Snakefile``...
 What happens if we decided to update the ``flake.nix``?
 For example, using a new version of ``nixpkgs``?
 
-As there is no mention of ``flake.nix`` and ``flake.lock`` in the ``Snakefile``, any changes in the environement will not be detected and might leave some incoherency in the produced data (*e.g.,* part of the data generated with one software environment, and another part with a different one).
+As there is no mention of ``flake.nix`` and ``flake.lock`` in the ``Snakefile``, any changes in the environment will not be detected and might leave some incoherency in the produced data (*e.g.,* part of the data generated with one software environment, and another part with a different one).
 
 .. admonition:: Your turn
 
@@ -272,13 +275,15 @@ To use it we'll need to ask the ``flake.nix`` to use the modified one instead of
 
    Add a new ``input`` called ``n4s`` to the ``flake.nix`` at the address ``github:nix4science/n4s``.
 
-(don't forget to pass it in the parameters of the ``output`` function).
+.. tip::
+
+    Don't forget to pass it in the parameters of the ``output`` function.
 
 .. admonition:: Your turn
 
    Replace the classical ``snakemake`` with the n4s one (``n4s.packages.${system}.snakemake``)
 
-This modified version of Snakemake introduced a new field in the definition of a ``rule``: the ``nix_flake``.
+This modified version of Snakemake introduces a new field in the definition of a ``rule``: the ``nix_flake``.
 
 For example, for the ``paper`` rule, we can use this new field as follows:
 
@@ -310,7 +315,5 @@ Conclusion
 
 In this tutorial, we learned how to use Snakemake, and how to integrate the use of Nix to have a fully reproducible generation of a scientific paper.
 
-We only scratch the surface of that Snakemake can do, and I invite you to explore their documentation!
-
-
+We only scratched the surface of that Snakemake can do, and I invite you to explore their documentation!
 
